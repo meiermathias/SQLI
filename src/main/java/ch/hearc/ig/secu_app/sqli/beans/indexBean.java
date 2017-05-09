@@ -5,6 +5,13 @@
  */
 package ch.hearc.ig.secu_app.sqli.beans;
 
+import ch.hearc.ig.secu_app.sqli.dao.UsersDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
@@ -19,6 +26,38 @@ public class indexBean {
 
     private String username;
     private String password;
+    private List<String> users;
+    private UsersDAO usersDAO;
+    private boolean methodSQL;
+    private boolean escapeWrongchar;
+
+    public boolean isEscapeWrongchar() {
+        return escapeWrongchar;
+    }
+
+    public void setEscapeWrongchar(boolean escapeWrongchar) {
+        this.escapeWrongchar = escapeWrongchar;
+    }
+    
+    public void changeState(){
+        this.escapeWrongchar = !this.escapeWrongchar;
+    }
+
+    public boolean isMethodSQL() {
+        return methodSQL;
+    }
+
+    public void setMethodSQL(boolean methodSQL) {
+        this.methodSQL = methodSQL;
+    }
+
+    public List<String> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<String> users) {
+        this.users = users;
+    }
 
     public String getUsername() {
         return username;
@@ -35,15 +74,56 @@ public class indexBean {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     /**
      * Creates a new instance of indexBean
      */
     public indexBean() {
     }
-    
-    public void authenticate(){
-        
+
+    @PostConstruct
+    public void init() {
+        this.users = new ArrayList<>();
     }
-    
+
+    public String authenticateWrong() {
+        try {
+            usersDAO = new UsersDAO();
+            usersDAO.openConnection();
+            for (String s : usersDAO.getUsersWrongMethod(username, password)) {
+                users.add(s);
+            }
+            
+            usersDAO.closeConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(indexBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(users.size() > 0){
+            return "result.xhtml";
+        }else{
+            return "index.xhtml";
+        }
+    }
+
+    public String authenticateRight() {
+        try {
+            usersDAO = new UsersDAO();
+            usersDAO.openConnection();
+            if (methodSQL) {
+                for (String s : usersDAO.getUsersRightMethod(username, password)) {
+                    users.add(s);
+                }
+            }
+            usersDAO.closeConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(indexBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(users.size() > 0){
+            return "result.xhtml";
+        }else{
+            return "index.xhtml";
+        }
+    }
+
 }
