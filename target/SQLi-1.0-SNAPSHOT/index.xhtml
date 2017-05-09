@@ -6,35 +6,34 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
+        <link href="resources/myStyle.css" rel="stylesheet" type="text/css"/>
         <title>Authentication</title>
     </h:head>
     <h:body>
-
-        <table>
-            <h:form>
-                <tr>
-                    <td><p:outputLabel>Username : </p:outputLabel></td><td><p:inputText value="#{indexBean.username}" /></td>
-                </tr>
-                <tr>
-                    <td><p:outputLabel>Password : </p:outputLabel></td>
-                    <td>
-                        <p:password validatorMessage="Caractères invalides" id="password" value="#{indexBean.password}">
-                            <!--<f:validateRegex rendered="false" pattern="^[a-zA-Z0-9\$\@\.]+*" />-->
-                        </p:password>
-                    </td>
-                    <td>
-                    Protection contre les guillemets ?<h:selectBooleanCheckbox id="provisioningTargetCollector" value="#{indexBean.escapeWrongchar}">
-                        <f:ajax />
-                    </h:selectBooleanCheckbox>
-                    </td>
-                    <h:message id="m6" for="password" style="color:red"/>
-                </tr>
-                <tr>
-                    <td></td><td><p:commandButton ajax="false" action="#{indexBean.authenticateWrong()}" value="S'authentifier (avec injection)" /></td>
-                    <td><p:commandButton ajax="false" action="#{indexBean.authenticateRight()}" value="S'authentifier (sans injection)" /></td>
-                </tr>
-            </h:form>
-        </table>
+        <h1 class="questionTitle ui-widget-header ui-corner-all">Exemples d'injections</h1>
+        <h:form>
+            <p:fieldset legend="Authentification" style="margin-bottom:20px">
+                <p:outputLabel for="username">Username : </p:outputLabel>
+                <p:inputText id="username" value="#{indexBean.username}" required="true" requiredMessage="Utilisateur obligatoire!"/>
+                <br/>
+                <br/>
+                <p:outputLabel for="password">Password : </p:outputLabel>
+                <p:password id="password" validatorMessage="Caractères invalides" value="#{indexBean.password}" required="true" requiredMessage="Mot de passe obligatoire!">
+                    <!--<f:validateRegex rendered="false" pattern="^[a-zA-Z0-9\$\@\.]+*" />-->
+                </p:password>
+                <br/>
+                <br/>
+                <br/>
+                <p:outputLabel for="guillemets">Protection contre les guillemets ? </p:outputLabel>
+                <h:selectBooleanCheckbox id="guillemets" value="#{indexBean.escapeWrongchar}">
+                    <f:ajax />
+                </h:selectBooleanCheckbox>
+                <br/>
+                <br/>
+                <br/>
+                <p:commandButton ajax="false" action="#{indexBean.authenticateWrong()}" value="S'authentifier (avec injection)" />
+                <p:commandButton ajax="false" action="#{indexBean.authenticateRight()}" value="S'authentifier (sans injection)" />
+            </p:fieldset>
+        </h:form>
     </h:body>
-
 </html>

@@ -1,0 +1,57 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12 avr. 2017, 19:56:00
+    Author     : tim.sermier
+*/
+
+html{
+    font-family: tahoma;
+}
+
+body{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.questionTitle{
+    padding: 5px;
+}
+
+.question{
+    font-size: 28px;
+}
+
+.pageIcon{
+    position: absolute;
+    top: 1%;
+    right: 21%;
+}
+
+.iconSize{
+    width: 70px;
+}
+
+.btnInfo{
+    margin-top: 20px;
+}
+
+.pointsNb{
+    padding: 10px;
+    
+}
+
+.progressbar{
+    margin-bottom: 10px;
+}
+
+.player{
+    font-weight: bold;
+}
+
+.menubar{
+    height: 40px;
+}
