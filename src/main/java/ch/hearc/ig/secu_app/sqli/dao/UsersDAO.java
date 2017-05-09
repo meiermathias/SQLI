@@ -52,6 +52,8 @@ public class UsersDAO {
     public List<String> getUsersRightMethod(String username, String password) throws SQLException{
         List<String> users = new ArrayList<>();
         PreparedStatement pstmt = cnn.prepareStatement("SELECT username FROM USERS WHERE username = ? and password = ?");
+        pstmt.setString(1, username);
+        pstmt.setString(2, password);
         ResultSet rs = pstmt.executeQuery();
         while(rs.next()){
             users.add(rs.getString("username"));
