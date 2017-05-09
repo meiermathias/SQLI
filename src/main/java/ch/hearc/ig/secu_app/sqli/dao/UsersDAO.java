@@ -54,7 +54,7 @@ public class UsersDAO {
         PreparedStatement pstmt = cnn.prepareStatement("SELECT username FROM USERS WHERE username = ? and password = ?");
         pstmt.setString(1, username);
         pstmt.setString(2, password);
-        ResultSet rs = pstmt.executeQuery();
+        ResultSet rs = pstmt.executeQuery(); 
         while(rs.next()){
             users.add(rs.getString("username"));
         }
