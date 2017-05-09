@@ -7,13 +7,22 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>TODO supply a title</title>
+        <title>Mes informations bancaires</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" />
     </head>
     <body>
         <div class="alert alert-success" role="alert">
             <strong>Well done ! </strong>Vous êtes bien authentifié !
+        </div>
+        <div class="jumbotron" style="margin-right: 30%; margin-left: 30%; padding: 50px;">
+            <h1 class="display-3">Bienvenue</h1>
+            <p class="lead">Utilisateur : #{indexBean.username}</p>
+            <p>N° de contrat ebanking : 123456</p>
+            <p>N° de compte : 080055565</p>
+            <p>N° de carte de crédit : 5600 5541 2521 9245</p>
+            <p>Solde : 8500 CHF</p>
+            <a class="btn btn-lg btn-success" target="_blank" href="https://ebanking-ch2.ubs.com/" role="button">Gérer votre compte en ligne  </a>
         </div>
     </body>
 </html>

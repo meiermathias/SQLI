@@ -6,6 +6,7 @@
 package ch.hearc.ig.secu_app.sqli.beans;
 
 import ch.hearc.ig.secu_app.sqli.dao.UsersDAO;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +16,15 @@ import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author tim.sermier
  */
 @Named(value = "indexBean")
-@RequestScoped
-public class indexBean {
+@SessionScoped
+public class indexBean implements Serializable {
 
     private String username;
     private String password;
