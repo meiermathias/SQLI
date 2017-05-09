@@ -79,6 +79,10 @@ public class indexBean {
 
     public String authenticateWrong() {
         try {
+            if(escapeWrongchar){
+                username = username.replace("'", "").replace("\"", "");
+                password = password.replace("'", "").replace("\"", "");
+            }
             usersDAO = new UsersDAO();
             usersDAO.openConnection();
             for (String s : usersDAO.getUsersWrongMethod(username, password)) {

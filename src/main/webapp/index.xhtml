@@ -22,11 +22,16 @@
                             <!--<f:validateRegex rendered="false" pattern="^[a-zA-Z0-9\$\@\.]+*" />-->
                         </p:password>
                     </td>
+                    <td>
+                    Protection contre les guillemets ?<h:selectBooleanCheckbox id="provisioningTargetCollector" value="#{indexBean.escapeWrongchar}">
+                        <f:ajax />
+                    </h:selectBooleanCheckbox>
+                    </td>
                     <h:message id="m6" for="password" style="color:red"/>
                 </tr>
                 <tr>
                     <td></td><td><p:commandButton ajax="false" action="#{indexBean.authenticateWrong()}" value="S'authentifier (avec injection)" /></td>
-                    <td></td><td><p:commandButton ajax="false" action="#{indexBean.authenticateRight()}" value="S'authentifier (sans injection)" /></td>
+                    <td><p:commandButton ajax="false" action="#{indexBean.authenticateRight()}" value="S'authentifier (sans injection)" /></td>
                 </tr>
             </h:form>
         </table>
