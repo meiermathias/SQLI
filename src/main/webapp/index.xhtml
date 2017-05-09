@@ -22,6 +22,8 @@
                     <!--<f:validateRegex rendered="false" pattern="^[a-zA-Z0-9\$\@\.]+*" />-->
                 </p:password>
                 <br/>
+                <p:outputLabel rendered="#{indexBean.errorMsg}" value="Identifiants incorrects" style="color: red; font-weight: bold"/>
+                <br/>
                 <br/>
                 <br/>
                 <p:outputLabel for="guillemets">Protection contre les guillemets ? </p:outputLabel>

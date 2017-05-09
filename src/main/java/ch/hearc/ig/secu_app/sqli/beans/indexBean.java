@@ -31,6 +31,17 @@ public class indexBean implements Serializable {
     private List<String> users;
     private UsersDAO usersDAO;
     private boolean escapeWrongchar;
+    private boolean errorMsg;
+
+    public boolean isErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(boolean errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+    
+    
 
     public boolean isEscapeWrongchar() {
         return escapeWrongchar;
@@ -97,8 +108,10 @@ public class indexBean implements Serializable {
         }
 
         if (users.size() > 0) {
+            errorMsg = false;
             return "result.xhtml";
         } else {
+            errorMsg = true;
             return "index.xhtml";
         }
     }
@@ -115,8 +128,10 @@ public class indexBean implements Serializable {
             Logger.getLogger(indexBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (users.size() > 0) {
+            errorMsg = false;
             return "result.xhtml";
         } else {
+            errorMsg = true;
             return "index.xhtml";
         }
     }
