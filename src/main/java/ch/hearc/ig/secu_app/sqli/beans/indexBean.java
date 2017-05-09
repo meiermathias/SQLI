@@ -28,7 +28,6 @@ public class indexBean {
     private String password;
     private List<String> users;
     private UsersDAO usersDAO;
-    private boolean methodSQL;
     private boolean escapeWrongchar;
 
     public boolean isEscapeWrongchar() {
@@ -38,17 +37,9 @@ public class indexBean {
     public void setEscapeWrongchar(boolean escapeWrongchar) {
         this.escapeWrongchar = escapeWrongchar;
     }
-    
-    public void changeState(){
+
+    public void changeState() {
         this.escapeWrongchar = !this.escapeWrongchar;
-    }
-
-    public boolean isMethodSQL() {
-        return methodSQL;
-    }
-
-    public void setMethodSQL(boolean methodSQL) {
-        this.methodSQL = methodSQL;
     }
 
     public List<String> getUsers() {
@@ -93,15 +84,15 @@ public class indexBean {
             for (String s : usersDAO.getUsersWrongMethod(username, password)) {
                 users.add(s);
             }
-            
+
             usersDAO.closeConnection();
         } catch (SQLException ex) {
             Logger.getLogger(indexBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if(users.size() > 0){
+
+        if (users.size() > 0) {
             return "result.xhtml";
-        }else{
+        } else {
             return "index.xhtml";
         }
     }
@@ -110,18 +101,16 @@ public class indexBean {
         try {
             usersDAO = new UsersDAO();
             usersDAO.openConnection();
-            if (methodSQL) {
-                for (String s : usersDAO.getUsersRightMethod(username, password)) {
-                    users.add(s);
-                }
+            for (String s : usersDAO.getUsersRightMethod(username, password)) {
+                users.add(s);
             }
             usersDAO.closeConnection();
         } catch (SQLException ex) {
             Logger.getLogger(indexBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(users.size() > 0){
+        if (users.size() > 0) {
             return "result.xhtml";
-        }else{
+        } else {
             return "index.xhtml";
         }
     }
