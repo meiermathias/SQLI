@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import oracle.jdbc.driver.OracleDriver;
 /**
  *
  * @author tim.sermier

@@ -11,8 +11,10 @@
     </h:head>
     <h:body>
         <h1 class="questionTitle ui-widget-header ui-corner-all">Exemples d'injections</h1>
+
         <h:form>
             <p:fieldset legend="Authentification" style="margin-bottom:20px">
+
                 <p:outputLabel for="username">Username : </p:outputLabel>
                 <p:inputText id="username" value="#{indexBean.username}" required="true" requiredMessage="Utilisateur obligatoire!"/>
                 <br/>
@@ -35,7 +37,11 @@
                 <br/>
                 <p:commandButton ajax="false" action="#{indexBean.authenticateWrong()}" value="S'authentifier (avec injection)" />
                 <p:commandButton ajax="false" action="#{indexBean.authenticateRight()}" value="S'authentifier (sans injection)" />
+
             </p:fieldset>
         </h:form>
+
+        <h:graphicImage value="resources/images/injection.png" style="left: 610px;position: relative;top: -200px;" alt="injection" width="150" height="141"/>
+
     </h:body>
 </html>
